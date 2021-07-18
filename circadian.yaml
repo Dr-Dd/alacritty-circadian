@@ -1,0 +1,27 @@
+# Theme files should be of the format:
+# 
+# colors:
+#   primary:
+#     background: ...
+#     ...
+#
+#     normal: ...
+#     ...
+#     ...
+# 
+# You can find many of them at:
+# https://github.com/eendroroy/alacritty-theme
+#
+# Choose whatever folder you like to store them
+theme-folder: ~/.config/alacritty/themes
+# Insert here your themes in the following format:
+#
+# themes:
+#   - time: HH:MM
+#     name: theme-name-1
+#   - time: HH:MM
+#     name: theme-name-2
+#   - ...
+themes:
+  - time: HH:MM
+    name: theme-name

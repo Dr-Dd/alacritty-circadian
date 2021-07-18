@@ -14,7 +14,7 @@
 #
 # Choose whatever folder you like to store them
 theme-folder: ~/.config/alacritty/themes
-# Insert you coordinates here
+# Insert you coordinates here (optional)
 coordinates:
   latitude: local-latitude
   longitude: local-longitude
@@ -26,6 +26,11 @@ coordinates:
 #   - time: HH:MM
 #     name: theme-name-2
 #   - ...
+#
+# 'time' values can be either a HH:MM time format or one of the
+# following times of the sun:
+#   dawn, sunrise, noon, sunset, dusk
+# to use these keywords you'll need to set latitude and longitude
 themes:
-  - time: HH:MM | sunrise/set
+  - time: HH:MM | sunrise/set...
     name: theme-name

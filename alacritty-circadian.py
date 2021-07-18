@@ -18,23 +18,31 @@ alacritty_path = Path.home() / Path(".config/alacritty")
 config_path = list(alacritty_path.glob("alacritty.y*ml"))[0]
 switch_path = list(alacritty_path.glob("circadian.y*ml"))[0]
 
+times_of_sun = {
+    "dawn",
+    "sunrise",
+    "noon",
+    "sunset",
+    "dusk",
+}
+
 def switch_theme(theme_data, config_data):
     # No need for truncating
     config_data["colors"] = theme_data["colors"]
     yaml.dump(config_data, config_path)
 
 def get_theme_time(theme, switch_data):
-    try:
-        obs = Observer(latitude = switch_data["coordinates"]["latitude"],
-                       longitude = switch_data["coordinates"]["longitude"])
-    except:
-        exit("[ERROR] Unable to convert coordinates \""
-             + switch_data["coordinates"]["latitude"] + "\" and \""
-             + switch_data["coordinates"]["longitude"] + "\"")
-    if theme["time"] == "sunrise":
-        theme_time = sun(obs)["sunrise"]
-    elif theme["time"] == "sunset":
-        theme_time = sun(obs)["sunset"]
+    theme_time_str = theme["time"]
+    if theme_time_str in times_of_sun:
+        try:
+            obs = Observer(latitude = switch_data["coordinates"]["latitude"],
+                           longitude = switch_data["coordinates"]["longitude"])
+        except KeyError:
+            exit("[ERROR] Coordinates not set")
+        except ValueError:
+            exit("[ERROR] Unable to convert coordinates, check if latitude " +
+                 "and longitude values are set and valid")
+        theme_time = sun(obs)[theme_time_str]
     else:
         try: theme_time = datetime.strptime(theme["time"],"%H:%M")
         except: exit("[ERROR] Unknown time format \"" + theme["time"] + "\"")
@@ -58,6 +66,8 @@ def set_theme_switch_timers():
     switch_data = yaml.load(switch_path)
     config_data = yaml.load(config_path)
     theme_folder_path = Path(expandvars(switch_data["theme-folder"])).expanduser()
+    if not theme_folder_path.exists():
+        exit("[ERROR] Path " + str(theme_folder_path) + " not found")
     today_time = datetime.today()
     for theme in switch_data["themes"]:
         try:

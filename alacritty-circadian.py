@@ -5,6 +5,7 @@ from os.path import expandvars
 from pathlib import Path
 from datetime import datetime, timedelta
 from threading import Timer
+from sys import exit
 
 # Initialize ruamel
 yaml = YAML()
@@ -38,12 +39,17 @@ def set_theme_switch_timers():
     switch_data = yaml.load(switch_path)
     config_data = yaml.load(config_path)
     theme_folder_path = Path(expandvars(switch_data["theme-folder"])).expanduser()
-    print(theme_folder_path)
     today_time = datetime.today()
     for theme in switch_data["themes"]:
-        curr_theme_path = list(theme_folder_path.glob(theme["name"] + ".y*ml"))[0]
+        try:
+            curr_theme_path = list(theme_folder_path.glob(theme["name"] + ".y*ml"))[0]
+        except:
+            exit("[ERROR] Unknown theme \"" + theme["name"] +"\"")
         theme_data = yaml.load(curr_theme_path)
-        theme_time = datetime.strptime(theme["time"],"%H:%M")
+        try:
+            theme_time = datetime.strptime(theme["time"],"%H:%M")
+        except:
+            exit("[ERROR] Unknown time format \"" + theme["time"] + "\"")
         switch_time = today_time.replace(hour = theme_time.hour, minute = theme_time.minute, second = 0, microsecond = 0)
         delta_t = switch_time - today_time
         seconds = delta_t.seconds + 1

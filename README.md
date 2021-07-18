@@ -23,6 +23,14 @@ $ systemctl --user enable alacritty-circadian.service
 $ systemctl --user start alacritty-circadian.service
 ```
 
+# Removal
+
+Just run the uninstall script inside the folder
+
+```
+$ ./uninstall.sh
+```
+
 ## Description
 The software is just a simple systemd service written in python. It uses the 
 ruamel.yaml parser library for manipulating the yaml config files without

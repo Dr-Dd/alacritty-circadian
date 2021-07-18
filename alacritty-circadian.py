@@ -13,7 +13,7 @@ yaml.default_flow_style = False
 # Set fixed paths
 alacritty_path = Path.home() / Path(".config/alacritty")
 config_path = list(alacritty_path.glob("alacritty.y*ml"))[0]
-switch_path = list((alacritty_path / Path("alacritty-circadian")).glob("circadian.y*ml"))[0]
+switch_path = list(alacritty_path.glob("circadian.y*ml"))[0]
 
 def switch_theme(theme_data, config_data):
     # No need for truncating
@@ -38,6 +38,7 @@ def set_theme_switch_timers():
     switch_data = yaml.load(switch_path)
     config_data = yaml.load(config_path)
     theme_folder_path = Path(expandvars(switch_data["theme-folder"])).expanduser()
+    print(theme_folder_path)
     today_time = datetime.today()
     for theme in switch_data["themes"]:
         curr_theme_path = list(theme_folder_path.glob(theme["name"] + ".y*ml"))[0]

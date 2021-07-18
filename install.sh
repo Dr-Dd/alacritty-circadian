@@ -10,7 +10,9 @@ mv alacritty-circadian.service $HOME/.config/systemd/user/ > /dev/null 2>&1
 mkdir $HOME/.config/alacritty/alacritty-circadian
 mv circadian.yaml $HOME/.config/alacritty/alacritty-circadian/ > /dev/null 2>&1
 
-echo "alacritty-theme-switch has been installed.
+echo "
+
+alacritty-circadian has been installed.
 
 Edit the .yaml file in $HOME/.config/alacritty/alacritty-circadian/circadian.yaml, then Start/enable its systemd user service:
 

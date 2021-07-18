@@ -13,7 +13,7 @@ yaml.default_flow_style = False
 # Set fixed paths
 alacritty_path = Path.home() / Path(".config/alacritty")
 config_path = list(alacritty_path.glob("alacritty.y*ml"))[0]
-switch_path = list((alacritty_path / Path("alacritty-theme-switch")).glob("theme-switch.y*ml"))[0]
+switch_path = list((alacritty_path / Path("alacritty-circadian")).glob("circadian.y*ml"))[0]
 
 def switch_theme(theme_data, config_data):
     # No need for truncating

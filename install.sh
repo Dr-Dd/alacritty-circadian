@@ -18,10 +18,10 @@ echo cp alacritty-circadian.py /usr/local/bin
 cp alacritty-circadian.py /usr/local/bin
 echo cp alacritty-circadian.service $HOME/.config/systemd/user/
 cp alacritty-circadian.service $HOME/.config/systemd/user/
-echo mkdir -p $HOME/.config/alacritty/alacritty-circadian
-mkdir -p $HOME/.config/alacritty/alacritty-circadian
-echo cp circadian.yaml $HOME/.config/alacritty/alacritty-circadian/
-cp circadian.yaml $HOME/.config/alacritty/alacritty-circadian/
+echo systemctl --user daemon-reload
+systemctl --user daemon-reload
+echo cp circadian.y*ml $HOME/.config/alacritty/
+cp circadian.y*ml $HOME/.config/alacritty/
 
 echo "
 [!!] alacritty-circadian has been installed.

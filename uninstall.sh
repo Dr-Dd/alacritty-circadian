@@ -7,8 +7,8 @@ echo rm /usr/local/bin/alacritty-circadian.py
 rm /usr/local/bin/alacritty-circadian.py
 echo rm $HOME/.config/systemd/user/alacritty-circadian.service
 rm $HOME/.config/systemd/user/alacritty-circadian.service
-echo rm -r $HOME/.config/alacritty/alacritty-circadian
-rm -r $HOME/.config/alacritty/alacritty-circadian
+echo rm $HOME/.config/alacritty/circadian.y*ml
+rm -r $HOME/.config/alacritty/circadian.y*ml
 
 echo "
 [!!] alacritty-circadian has been uninstalled.

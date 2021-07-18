@@ -23,6 +23,6 @@ ${blue}[!!]${reset}   systemctl --user stop alacritty-circadian.service
 ${blue}[!!]${reset}
 ${blue}[!!]${reset} pip packages haven't been removed. To uninstall ruamel.yaml, simply run:
 ${blue}[!!]${reset}
-${blue}[!!]${reset}   pip uninstall ruamel.yaml
+${blue}[!!]${reset}   pip uninstall ruamel.yaml astral
 
 "

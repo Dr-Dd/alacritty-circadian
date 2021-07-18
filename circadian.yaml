@@ -1,5 +1,5 @@
 # Theme files should be of the format:
-# 
+#
 # colors:
 #   primary:
 #     background: ...
@@ -8,12 +8,16 @@
 #     normal: ...
 #     ...
 #     ...
-# 
+#
 # You can find many of them at:
 # https://github.com/eendroroy/alacritty-theme
 #
 # Choose whatever folder you like to store them
 theme-folder: ~/.config/alacritty/themes
+# Insert you coordinates here
+coordinates:
+  latitude: local-latitude
+  longitude: local-longitude
 # Insert here your themes in the following format:
 #
 # themes:
@@ -23,5 +27,5 @@ theme-folder: ~/.config/alacritty/themes
 #     name: theme-name-2
 #   - ...
 themes:
-  - time: HH:MM
+  - time: HH:MM | sunrise/set
     name: theme-name

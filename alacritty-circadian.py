@@ -6,6 +6,8 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from threading import Timer
 from sys import exit
+from astral import Observer
+from astral.sun import sun
 
 # Initialize ruamel
 yaml = YAML()
@@ -21,11 +23,28 @@ def switch_theme(theme_data, config_data):
     config_data["colors"] = theme_data["colors"]
     yaml.dump(config_data, config_path)
 
+def get_theme_time(theme, switch_data):
+    try:
+        obs = Observer(latitude = switch_data["coordinates"]["latitude"],
+                       longitude = switch_data["coordinates"]["longitude"])
+    except:
+        exit("[ERROR] Unable to convert coordinates \""
+             + switch_data["coordinates"]["latitude"] + "\" and \""
+             + switch_data["coordinates"]["longitude"] + "\"")
+    if theme["time"] == "sunrise":
+        theme_time = sun(obs)["sunrise"]
+    elif theme["time"] == "sunset":
+        theme_time = sun(obs)["sunset"]
+    else:
+        try: theme_time = datetime.strptime(theme["time"],"%H:%M")
+        except: exit("[ERROR] Unknown time format \"" + theme["time"] + "\"")
+    return theme_time
+
 def set_appropriate_theme(switch_data, today_time, theme_folder_path):
     # nearest list element neighbor to today_time
     diff = -1
     for theme in switch_data["themes"]:
-        theme_time = datetime.strptime(theme["time"],"%H:%M")
+        theme_time = get_theme_time(theme, switch_data)
         switch_time = today_time.replace(hour = theme_time.hour, minute = theme_time.minute, second = 0, microsecond = 0)
         delta_t =  today_time - switch_time
         seconds = delta_t.seconds + 1
@@ -45,11 +64,8 @@ def set_theme_switch_timers():
             curr_theme_path = list(theme_folder_path.glob(theme["name"] + ".y*ml"))[0]
         except:
             exit("[ERROR] Unknown theme \"" + theme["name"] +"\"")
+        theme_time = get_theme_time(theme, switch_data)
         theme_data = yaml.load(curr_theme_path)
-        try:
-            theme_time = datetime.strptime(theme["time"],"%H:%M")
-        except:
-            exit("[ERROR] Unknown time format \"" + theme["time"] + "\"")
         switch_time = today_time.replace(hour = theme_time.hour, minute = theme_time.minute, second = 0, microsecond = 0)
         delta_t = switch_time - today_time
         seconds = delta_t.seconds + 1

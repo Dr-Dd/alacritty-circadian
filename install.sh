@@ -6,12 +6,12 @@ blue=`tput setaf 4`
 reset=`tput sgr0`
 
 echo ""
-echo "${blue}[!!]${reset} Installing ruamel.yaml"
+echo "${blue}[!!]${reset} Installing python dependencies"
 echo ""
 echo pip install -U pip setuptools wheel
 pip install -U pip setuptools wheel
-echo pip install ruamel.yaml
-pip install ruamel.yaml
+echo pip install ruamel.yaml astral
+pip install ruamel.yaml astral
 echo ""
 echo "${blue}[!!]${reset} Installing executable scripts, config files and services"
 echo ""

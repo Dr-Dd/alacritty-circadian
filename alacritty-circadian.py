@@ -1,11 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 from ruamel.yaml import YAML
 from os.path import expandvars
 from pathlib import Path
 from datetime import datetime
 from threading import Timer
-from sys import exit
+from sys import exit, platform
 from astral import Observer
 from astral.sun import sun
 
@@ -14,7 +14,12 @@ yaml = YAML()
 yaml.default_flow_style = False
 
 # Set fixed paths
-alacritty_path = Path.home() / Path(".config/alacritty")
+#
+# Platform dependent paths
+if platform == "linux":
+    alacritty_path = Path.home() / Path(".config/alacritty")
+elif platform == "win32":
+    alacritty_path = Path(expandvars("%APPDATA%")) / Path("alacritty")
 config_path = list(alacritty_path.glob("alacritty.y*ml"))[0]
 alacritty_circadian_path = list(alacritty_path.glob("circadian.y*ml"))[0]
 
@@ -76,17 +81,24 @@ def set_appropriate_theme(alacritty_circadian_data, now_time,
         if seconds > 0 and (seconds < diff or diff == -1):
             diff = seconds
             preferred_theme = theme
-    theme_path = list(theme_folder_path.glob(preferred_theme["name"]
+    try:
+        theme_path = list(theme_folder_path.glob(preferred_theme["name"]
                                              + ".y*ml"))[0]
+    except IndexError:
+        exit("[ERROR] Unknown theme \"" + preferred_theme["name"]
+             + "\"")
     theme_data = yaml.load(theme_path)
     switch_theme(theme_data, config_data)
 
 
 def set_theme_switch_timers():
-    alacritty_circadian_data = yaml.load(alacritty_circadian_path)
     config_data = yaml.load(config_path)
-    theme_folder_path = Path(expandvars(
-        alacritty_circadian_data["theme-folder"])).expanduser()
+    try:
+        alacritty_circadian_data = yaml.load(alacritty_circadian_path)
+        theme_folder_path = Path(expandvars(
+            alacritty_circadian_data["theme-folder"])).expanduser()
+    except:
+        exit("[ERROR] Malformed or missing circadian config file.")
     if not theme_folder_path.exists():
         exit("[ERROR] Path " + str(theme_folder_path) + " not found")
     set_appropriate_theme(alacritty_circadian_data, datetime.today(),

@@ -19,6 +19,7 @@ coordinates:
   latitude: local-latitude
   longitude: local-longitude
 # Insert here your themes in the following format:
+# Theme names shouldn't use file extensions
 #
 # themes:
 #   - time: HH:MM

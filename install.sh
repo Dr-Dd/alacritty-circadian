@@ -23,13 +23,11 @@ echo cp alacritty-circadian.service $HOME/.config/systemd/user/
 cp alacritty-circadian.service $HOME/.config/systemd/user/
 echo systemctl --user daemon-reload
 systemctl --user daemon-reload
-echo cp circadian.y*ml $HOME/.config/alacritty/
-cp circadian.y*ml $HOME/.config/alacritty/
 
 echo "
 ${blue}[!!]${reset} alacritty-circadian has been installed.
 ${blue}[!!]${reset}
-${blue}[!!]${reset} Edit the .yaml file in
+${blue}[!!]${reset} Copy and edit the circadian.yaml.example file to
 ${blue}[!!]${reset} $HOME/.config/alacritty/circadian.y*ml, then
 ${blue}[!!]${reset} start/enable its systemd user service:
 ${blue}[!!]${reset}

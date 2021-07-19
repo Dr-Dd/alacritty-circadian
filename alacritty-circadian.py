@@ -119,8 +119,9 @@ def set_theme_switch_timers():
             t = Timer(seconds, thread_switch_theme, [theme_data, config_data])
             thread_list.append(t)
             t.start()
+            # Flush stdout to output to log journal
             print("[LOG] Setting up a timer for " + str(theme["name"])
-                  + " at:\n" + "\t" + str(switch_time))
+                  + " at: " + str(switch_time), flush=True)
         for thread in thread_list:
             thread.join()
 

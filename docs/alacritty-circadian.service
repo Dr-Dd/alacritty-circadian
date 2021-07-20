@@ -2,7 +2,7 @@
 Description=Alacritty automatic theme switch
 
 [Service]
-ExecStart=/usr/local/bin/alacritty-circadian.py
+ExecStart=$HOME/.local/bin/alacritty-circadian.py
 
 [Install]
 WantedBy=default.target

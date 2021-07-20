@@ -13,4 +13,4 @@ clean:
 	rm -rf src/*.egg-info
 
 install:
-	python setup.py install --root="$pkgdir" --optimize=1 --skip-build
+	python setup.py install --optimize=1 --skip-build

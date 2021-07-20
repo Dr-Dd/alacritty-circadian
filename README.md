@@ -8,6 +8,23 @@ A cross-platform time based [alacritty](https://github.com/alacritty/alacritty) 
 [circadian.el](https://github.com/guidoschmidt/circadian.el) Emacs package by
 [guidoschmidt](https://github.com/guidoschmidt), written in Python.
 
+Table of Contents
+=================
+
+* [Alacritty Circadian](#alacritty-circadian)
+* [Table of Contents](#table-of-contents)
+   * [Installation](#installation)
+      * [Pip](#pip)
+      * [AUR](#aur)
+      * [Git](#git)
+   * [Configuration](#configuration)
+      * [Theme format](#theme-format)
+   * [Usage](#usage)
+      * [System Services](#system-services)
+         * [Linux (Systemd)](#linux-systemd)
+         * [Windows (shell:startup)](#windows-shellstartup)
+         * [MacOS (launchd)](#macos-launchd)
+
 ## Installation
 
 The package can be installed from multiple sources (other than Git releases):
@@ -15,7 +32,7 @@ The package can be installed from multiple sources (other than Git releases):
 ### Pip
 
 ```
-$ pip install alacritty-circadian
+$ pip install --user alacritty-circadian 
 ```
 
 ### AUR
@@ -27,17 +44,21 @@ $ yay alacritty-circadian
 ```
 
 This will also install the required system services, which have to be added
-manually when installing from pip.
+manually when installing from pip. Read below for more info.
 
 ### Git
 
-Either download the release, or just clone the head:
+Either download the release, or just clone the head. Then, cd into the 
+directory and install the package locally.
 
 ```
-$ git clone https://github.com/Dr-Dd/alacritty-circadian.git
-$ cd alacritty-circadian
-$ ./install.sh
+$ python -m build
+$ pip install --user .
 ```
+
+You'll find some example config files in `docs/`
+
+Note: the package has been made with `setuptools` and `build`
 
 ## Configuration
 
@@ -112,9 +133,12 @@ To start the service just run the CLI script:
 $ alacritty-circadian
 ```
 
-### System Service
+### System Services
 
 The intended way to use the utility is via a system service.
+
+#### Linux (Systemd)
+
 On a systemd init Linux this is attainable by adding the following service file
 to `~/.config/systemd/user/alacritty-circadian.service`:
 
@@ -137,14 +161,14 @@ $ systemctl --user enable alacritty-circadian.service
 $ systecmtl --user start alacritty-circadian.service
 ```
 
-#### Windows
+#### Windows (shell:startup)
 
 Included in the releases are `.exe` binaries to use as a startup
 application, just download one and add a shortcut to it in the `Startup` Windows
-folder (`Win + R 'shell:startup' to open it`). After that you'll be able to see
+folder (`Win + R 'shell:startup'` to open it). After that you'll be able to see
 it in your task manager.
 
-#### MacOS
+#### MacOS (launchd)
 
 It should be quite easy to add a `launchd` service in `~/Library/LaunchAgents`
 although you'll have to provide your own service file (i don't own a Mac).

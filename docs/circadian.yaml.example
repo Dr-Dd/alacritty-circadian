@@ -13,8 +13,8 @@
 # https://github.com/eendroroy/alacritty-theme
 #
 # Choose whatever folder you like to store them
-# Remember to double escape chars for windows paths
-# theme folder:
+# Remember to double escape chars for Windows paths:
+#
 # theme-folder: "%APPDATA%\\alacritty\\themes"
 theme-folder: ~/.config/alacritty/themes
 # Insert you coordinates here (optional)

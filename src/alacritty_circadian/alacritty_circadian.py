@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Small python module for handling the automatic theme switching of alacritty
 via explicit time or phases of the sun

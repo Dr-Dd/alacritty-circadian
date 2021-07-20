@@ -25,7 +25,8 @@ setuptools.setup(
             "Operating System :: MacOS",
             "Operating System :: Microsoft :: Windows"
             ],
-        packages=["alacritty_circadian"],
+        package_dir={"": "src"},
+        packages=setuptools.find_packages(where="src"),
         python_requires=">=3.6",
         install_requires=[ 
             "ruamel.yaml",

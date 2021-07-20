@@ -1,9 +1,6 @@
-<p align="center"> 
+<p align="center">
   <img src="https://user-images.githubusercontent.com/37450282/126343276-6cb3983f-5a45-4cdd-9784-b6d4c00c18d5.png" width="650">
 </p>
-
-[![PyPI version fury.io](https://badge.fury.io/py/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
-[![AUR package](https://repology.org/badge/version-for-repo/aur/aurutils.svg)](https://repology.org/project/aurutils/versions)
 
 # Alacritty Circadian
 
@@ -50,24 +47,24 @@ The program parses a YAML file named `circadian.yaml` in
 It has the following fields:
 
 ```yml
+#
 # Choose whatever folder you like to store the themes
 #
+# If you are a *NIX user:
 theme-folder: ~/.config/alacritty/themes
 #
+# If you are a WINDOWS user:
 # Remember to double escape special chars for Windows paths and surround them
 # with double quotes if you are using environment variables, e.g.:
-#
-# theme-folder: "%APPDATA%\\alacritty\\themes"
+theme-folder: "%APPDATA%\\alacritty\\themes"
 
 #
 # If you want to use sun phases instead of time, put your coordinates in the
-# config file
-#
+# config file:
 coordinates:
   latitude: 40.684485
   longitude: -74.401383
 
-#
 # Themes are an associative array of the following format.
 # Theme names MUST NOT use file extensions.
 #
@@ -79,7 +76,6 @@ coordinates:
 #       * noon
 #       * sunset
 #       * dusk
-#
 themes:
   - time: sunset
     name: tokyo-night
@@ -119,8 +115,8 @@ $ alacritty-circadian
 ### System Service
 
 The intended way to use the utility is via a system service.
-On a systemd Linux this is attainable by adding the following service file to
-`~/.config/systemd/user/alacritty-circadian.service`:
+On a systemd init Linux this is attainable by adding the following service file
+to `~/.config/systemd/user/alacritty-circadian.service`:
 
 ```ini
 [Unit]
@@ -141,7 +137,14 @@ $ systemctl --user enable alacritty-circadian.service
 $ systecmtl --user start alacritty-circadian.service
 ```
 
-#### Windows and MacOS
+#### Windows
 
-You can do the same on Windows and MacOS but you'll have to write the system
-service yourself.
+Included in the releases are `.exe` binaries to use as a startup
+application, just download one and add a shortcut to it in the `Startup` Windows
+folder (`Win + R 'shell:startup' to open it`). After that you'll be able to see
+it in your task manager.
+
+#### MacOS
+
+It should be quite easy to add a `launchd` service in `~/Library/LaunchAgents`
+although you'll have to provide your own service file (i don't own a Mac).

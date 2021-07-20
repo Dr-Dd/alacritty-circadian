@@ -2,6 +2,8 @@
   <img src="https://user-images.githubusercontent.com/37450282/126343276-6cb3983f-5a45-4cdd-9784-b6d4c00c18d5.png" width="650">
 </p>
 
+[![PyPI version](https://badge.fury.io/py/alacritty-circadian.svg)](https://badge.fury.io/py/alacritty-circadian)
+
 # Alacritty Circadian
 
 A cross-platform time based [alacritty](https://github.com/alacritty/alacritty) theme switcher inspired by the excellent

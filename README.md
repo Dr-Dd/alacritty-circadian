@@ -1,6 +1,11 @@
-# Alacritty Circadian
+<p align="center"> 
+  <img src="https://user-images.githubusercontent.com/37450282/126343276-6cb3983f-5a45-4cdd-9784-b6d4c00c18d5.png" width="650">
+</p>
+
 [![PyPI version fury.io](https://badge.fury.io/py/ansicolortags.svg)](https://pypi.python.org/pypi/ansicolortags/)
 [![AUR package](https://repology.org/badge/version-for-repo/aur/aurutils.svg)](https://repology.org/project/aurutils/versions)
+
+# Alacritty Circadian
 
 A cross-platform time based [alacritty](https://github.com/alacritty/alacritty) theme switcher inspired by the excellent
 [circadian.el](https://github.com/guidoschmidt/circadian.el) Emacs package by
@@ -50,9 +55,9 @@ It has the following fields:
 theme-folder: ~/.config/alacritty/themes
 #
 # Remember to double escape special chars for Windows paths and surround them
-# with double quotes if you are using environment variables
+# with double quotes if you are using environment variables, e.g.:
 #
-theme-folder: "%APPDATA%\\alacritty\\themes"
+# theme-folder: "%APPDATA%\\alacritty\\themes"
 
 #
 # If you want to use sun phases instead of time, put your coordinates in the

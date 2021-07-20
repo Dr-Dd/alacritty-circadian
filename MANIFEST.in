@@ -1,2 +1,3 @@
-include README.md LICENSE
+include README.md LICENSE Makefile
 recursive-include docs *
+recursive-include bin *

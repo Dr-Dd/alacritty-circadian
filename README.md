@@ -34,7 +34,7 @@ The package can be installed from multiple sources (other than Git releases):
 ### Pip
 
 ```
-$ pip install --user alacritty-circadian 
+$ pip install alacritty-circadian 
 ```
 
 ### AUR
@@ -55,7 +55,7 @@ directory and install the package locally.
 
 ```
 $ python -m build
-$ pip install --user .
+$ pip install .
 ```
 
 You'll find some example config files in `docs/`
@@ -149,7 +149,7 @@ to `~/.config/systemd/user/alacritty-circadian.service`:
 Description=Alacritty automatic theme switch
 
 [Service]
-ExecStart=$HOME/.local/bin/alacritty-circadian
+ExecStart=alacritty-circadian
 
 [Install]
 WantedBy=default.target

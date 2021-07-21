@@ -6,7 +6,7 @@ via explicit time or phases of the sun
 # Std imports
 from os.path import expandvars
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 from threading import Timer
 import sys
 
@@ -14,6 +14,7 @@ import sys
 from ruamel.yaml import YAML
 from astral import Observer
 from astral.sun import sun
+from tzlocal import get_localzone
 
 # Initialize ruamel
 yaml = YAML()
@@ -40,6 +41,7 @@ times_of_sun = {
     "dusk",
 }
 
+tz = get_localzone()
 
 def switch_theme(theme_data, config_data):
     """
@@ -75,6 +77,7 @@ def get_theme_time(theme, alacritty_circadian_data, now_time):
             sys.exit("[ERROR] Unable to convert coordinates, check if " +
                      "latitude and longitude values are set and valid")
         theme_time = sun(obs)[theme_time_str]
+        print(theme_time)
     else:
         try:
             theme_time = datetime.strptime(theme["time"], "%H:%M")
@@ -82,7 +85,7 @@ def get_theme_time(theme, alacritty_circadian_data, now_time):
             sys.exit("[ERROR] Unknown time format \"" + theme["time"] + "\"")
     # Convert datetime to naive if aware and fix YY/MM/DD
     theme_time = theme_time.replace(year=now_time.year, month=now_time.month,
-                                    day=now_time.day, tzinfo=None)
+                                    day=now_time.day)
     return theme_time
 
 
@@ -131,12 +134,12 @@ def set_theme_switch_timers():
         alacritty_circadian_data["theme-folder"])).expanduser()
     if not theme_folder_path.exists():
         sys.exit("[ERROR] Path " + str(theme_folder_path) + " not found")
-    set_appropriate_theme(alacritty_circadian_data, datetime.today(),
+    set_appropriate_theme(alacritty_circadian_data, datetime.now(timezone.utc),
                           theme_folder_path, config_data)
     # Hot loop
     while True:
         thread_list = []
-        now_time = datetime.today()
+        now_time = datetime.now(timezone.utc)
         for theme in alacritty_circadian_data["themes"]:
             try:
                 curr_theme_path = list(theme_folder_path.glob(theme["name"]
@@ -163,8 +166,9 @@ def set_theme_switch_timers():
             thread_list.append(timer_thread)
             timer_thread.start()
             # Flush stdout to output to log journal
+            local_time = switch_time.replace(tzinfo=tz)
             print("[LOG] Setting up a timer for " + str(theme["name"])
-                  + " at: " + str(switch_time), flush=True)
+                  + " at: " + str(switch_time.astimezone(get_localzone())), flush=True)
         for thread in thread_list:
             thread.join()
 

@@ -41,8 +41,6 @@ times_of_sun = {
     "dusk",
 }
 
-tz = get_localzone()
-
 def switch_theme(theme_data, config_data):
     """
     Put theme_data in alacritty's config_data.
@@ -77,7 +75,6 @@ def get_theme_time(theme, alacritty_circadian_data, now_time):
             sys.exit("[ERROR] Unable to convert coordinates, check if " +
                      "latitude and longitude values are set and valid")
         theme_time = sun(obs)[theme_time_str]
-        print(theme_time)
     else:
         try:
             theme_time = datetime.strptime(theme["time"], "%H:%M")
@@ -166,7 +163,6 @@ def set_theme_switch_timers():
             thread_list.append(timer_thread)
             timer_thread.start()
             # Flush stdout to output to log journal
-            local_time = switch_time.replace(tzinfo=tz)
             print("[LOG] Setting up a timer for " + str(theme["name"])
                   + " at: " + str(switch_time.astimezone(get_localzone())), flush=True)
         for thread in thread_list:

@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
         name='alacritty-circadian',
-        version='0.9.3',
+        version='0.9.5',
         author='Leonardo \"drd\" Idone',
         author_email='idone.leonardo@gmail.com',
         description='Alacritty time/sun based theme switch daemon',
@@ -30,7 +30,8 @@ setuptools.setup(
         python_requires=">=3.6",
         install_requires=[ 
             "ruamel.yaml",
-            "astral"
+            "astral",
+            "tzlocal"
         ],
         entry_points={
             'console_scripts': [

@@ -80,7 +80,6 @@ def get_theme_time(theme, alacritty_circadian_data, now_time):
             theme_time = datetime.strptime(theme["time"], "%H:%M")
         except ValueError:
             sys.exit("[ERROR] Unknown time format \"" + theme["time"] + "\"")
-    # Convert datetime to naive if aware and fix YY/MM/DD
     theme_time = theme_time.replace(year=now_time.year, month=now_time.month,
                                     day=now_time.day)
     return theme_time

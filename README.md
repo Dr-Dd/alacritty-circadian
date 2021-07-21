@@ -1,9 +1,8 @@
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/37450282/126343276-6cb3983f-5a45-4cdd-9784-b6d4c00c18d5.png" width="650">
+  <img src="https://user-images.githubusercontent.com/37450282/126490791-43feaa96-564f-4ef4-bcc3-159f801f7c41.png" width="600">
 </p>
 
-[![PyPI version](https://badge.fury.io/py/alacritty-circadian.svg)](https://badge.fury.io/py/alacèritty-circadian)
-![AUR version](https://img.shields.io/aur/version/alacritty-circadian)
+
 # Alacritty Circadian
 
 A cross-platform time based [alacritty](https://github.com/alacritty/alacritty) theme switcher inspired by the excellent

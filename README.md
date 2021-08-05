@@ -75,7 +75,7 @@ It has the following fields:
 theme-folder: ~/.config/alacritty/themes
 #
 # If you are a WINDOWS user:
-# Remember to double escape special chars for Windows paths and surround them
+# Remember to escape special chars for Windows paths and surround them
 # with double quotes if you are using environment variables, e.g.:
 theme-folder: "%APPDATA%\\alacritty\\themes"
 

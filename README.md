@@ -2,6 +2,8 @@
   <img src="https://user-images.githubusercontent.com/37450282/126490791-43feaa96-564f-4ef4-bcc3-159f801f7c41.png" width="600">
 </p>
 
+[![PyPI version](https://badge.fury.io/py/alacritty-circadian.svg)](https://badge.fury.io/py/alacèritty-circadian)
+![AUR version](https://img.shields.io/aur/version/alacritty-circadian)
 
 # Alacritty Circadian
 
@@ -9,22 +11,19 @@ A cross-platform time based [alacritty](https://github.com/alacritty/alacritty) 
 [circadian.el](https://github.com/guidoschmidt/circadian.el) Emacs package by
 [guidoschmidt](https://github.com/guidoschmidt), written in Python.
 
-Table of Contents
-=================
-
-* [Alacritty Circadian](#alacritty-circadian)
-* [Table of Contents](#table-of-contents)
-   * [Installation](#installation)
-      * [Pip](#pip)
-      * [AUR](#aur)
-      * [Git](#git)
-   * [Configuration](#configuration)
-      * [Theme format](#theme-format)
-   * [Usage](#usage)
-      * [System Services](#system-services)
-         * [Linux (Systemd)](#linux-systemd)
-         * [Windows (shell:startup)](#windows-shellstartup)
-         * [MacOS (launchd)](#macos-launchd)
+* [Installation](#installation)
+   * [Pip](#pip)
+   * [AUR](#aur)
+   * [Git](#git)
+* [Configuration](#configuration)
+   * [Theme format](#theme-format)
+* [Usage](#usage)
+   * [System Services](#system-services)
+      * [Linux (Systemd)](#linux-systemd)
+      * [Windows (shell:startup)](#windows-shellstartup)
+      * [MacOS (launchd)](#macos-launchd)
+* [Known Problems](#known-problems)
+   * [Ruamel Hibernation WakeUp](#ruamel-hibernation-wakeup) 
 
 ## Installation
 
@@ -76,7 +75,7 @@ It has the following fields:
 theme-folder: ~/.config/alacritty/themes
 #
 # If you are a WINDOWS user:
-# Remember to double escape special chars for Windows paths and surround them
+# Remember to escape special chars for Windows paths and surround them
 # with double quotes if you are using environment variables, e.g.:
 theme-folder: "%APPDATA%\\alacritty\\themes"
 
@@ -173,3 +172,9 @@ it in your task manager.
 
 It should be quite easy to add a `launchd` service in `~/Library/LaunchAgents`
 although you'll have to provide your own service file (i don't own a Mac).
+
+## Known Problems
+
+### Ruamel Hibernation WakeUp
+
+In some very rare instances the ruamel yaml parser could mangle the config file when waking up from hibernation. This problem is hard to debug, but it's rare enough to not be of any hinderance. As a workaround, put your theme config on the bottom of the config file so that, in the event of a malfunction, you'll just have to restart the daemon.

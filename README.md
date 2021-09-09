@@ -172,9 +172,3 @@ it in your task manager.
 
 It should be quite easy to add a `launchd` service in `~/Library/LaunchAgents`
 although you'll have to provide your own service file (i don't own a Mac).
-
-## Known Problems
-
-### Ruamel Hibernation WakeUp
-
-In some very rare instances the ruamel yaml parser could mangle the config file when waking up from hibernation. This problem is hard to debug, but it's rare enough to not be of any hinderance. As a workaround, put your theme config on the bottom of the config file so that, in the event of a malfunction, you'll just have to restart the daemon.

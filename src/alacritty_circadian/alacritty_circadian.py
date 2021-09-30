@@ -10,7 +10,7 @@ via explicit time or phases of the sun
 # Std imports
 from os.path import expandvars
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from threading import Timer, Lock
 import sys
 
@@ -164,10 +164,13 @@ def set_theme_switch_timers():
                                         now_time)
             theme_data = yaml.load(curr_theme_path)
             if theme_time < now_time:
-                switch_time = now_time.replace(day=now_time.day+1,
+                # Set Date to today
+                switch_time = now_time.replace(day=now_time.day,
                                                hour=theme_time.hour,
                                                minute=theme_time.minute,
                                                second=0, microsecond=0)
+                # Add one day without overflowing current month
+                switch_time = switch_time + timedelta(days=1)
             else:
                 switch_time = now_time.replace(hour=theme_time.hour,
                                                minute=theme_time.minute,

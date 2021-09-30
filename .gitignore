@@ -16,3 +16,6 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+
+# Added by user
+build.sh

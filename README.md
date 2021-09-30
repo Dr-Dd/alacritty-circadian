@@ -22,8 +22,6 @@ A cross-platform time based [alacritty](https://github.com/alacritty/alacritty) 
       * [Linux (Systemd)](#linux-systemd)
       * [Windows (shell:startup)](#windows-shellstartup)
       * [MacOS (launchd)](#macos-launchd)
-* [Known Problems](#known-problems)
-   * [Ruamel Hibernation WakeUp](#ruamel-hibernation-wakeup) 
 
 ## Installation
 

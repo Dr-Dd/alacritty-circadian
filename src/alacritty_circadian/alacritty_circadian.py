@@ -5,8 +5,6 @@ Small python module for handling the automatic theme switching of alacritty
 via explicit time or phases of the sun
 """
 
-# TODO: check if datetime already has all the timezone conversion methods
-#       we need, so that we can drop tzlocal
 # Std imports
 from os.path import expandvars
 from pathlib import Path
@@ -18,7 +16,6 @@ import sys
 from ruamel.yaml import YAML
 from astral import Observer
 from astral.sun import sun
-from tzlocal import get_localzone
 
 # Create global thread lock
 lock = Lock()
@@ -70,7 +67,7 @@ def thread_switch_theme(theme_data, config_data):
 
 def get_theme_time(theme, alacritty_circadian_data, now_time):
     """
-    Get the naive time associated with theme, either from a times_of_sun
+    Get the time associated with theme, either from a times_of_sun
     String or an HH:MM timestamp.
     """
     theme_time_str = theme["time"]
@@ -87,7 +84,6 @@ def get_theme_time(theme, alacritty_circadian_data, now_time):
         theme_time = sun(obs)[theme_time_str]
     else:
         try:
-            #2021-09-09 12:21:23.519742+00:00
             theme_time = datetime.strptime(theme["time"], "%H:%M")
         except ValueError:
             sys.exit("[ERROR] Unknown time format \"" + theme["time"] + "\"")
@@ -182,8 +178,9 @@ def set_theme_switch_timers():
             thread_list.append(timer_thread)
             timer_thread.start()
             # Flush stdout to output to log journal
+            local_timezone = datetime.now(timezone.utc).astimezone().tzinfo
             print("[LOG] Setting up a timer for " + str(theme["name"])
-                  + " at: " + str(switch_time.astimezone(get_localzone())), flush=True)
+                  + " at: " + str(switch_time.astimezone(local_timezone)), flush=True)
         for thread in thread_list:
             thread.join()
 

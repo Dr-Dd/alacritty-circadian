@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
         name='alacritty-circadian',
-        version='0.9.7',
+        version='0.9.8',
         author='Leonardo \"drd\" Idone',
         author_email='idone.leonardo@gmail.com',
         description='Alacritty time/sun based theme switch daemon',

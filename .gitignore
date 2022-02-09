@@ -19,3 +19,4 @@ var/
 
 # Added by user
 build.sh
+flycheck_alacritty_circadian.py
